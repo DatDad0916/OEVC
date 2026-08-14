@@ -1,0 +1,516 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Overlooked Elite Volleyball Club</title>
+  <style>
+    :root {
+      --primary-pink: #ff4081;
+      --hover-pink: #e0356f;
+      --light-pink: #ffe6ef;
+      --dark-grey: #22252a;
+      --mid-grey: #4a4e57;
+      --light-grey: #f4f5f7;
+      --border-grey: #e1e4e8;
+      --white: #ffffff;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+      scroll-behavior: smooth;
+    }
+
+    body {
+      background-color: var(--white);
+      color: var(--dark-grey);
+      line-height: 1.6;
+    }
+
+    /* --- Navigation --- */
+    header {
+      position: sticky;
+      top: 0;
+      background: var(--white);
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+      z-index: 1000;
+    }
+
+    nav {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 1rem 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+
+    .logo {
+      font-size: 1.5rem;
+      font-weight: 800;
+      color: var(--dark-grey);
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    .logo span {
+      color: var(--primary-pink);
+    }
+
+    .nav-links {
+      display: flex;
+      list-style: none;
+      gap: 1.2rem;
+      flex-wrap: wrap;
+    }
+
+    .nav-links a {
+      text-decoration: none;
+      color: var(--mid-grey);
+      font-weight: 600;
+      font-size: 0.95rem;
+      transition: color 0.2s;
+    }
+
+    .nav-links a:hover {
+      color: var(--primary-pink);
+    }
+
+    /* --- Hero Section --- */
+    .hero {
+      background: linear-gradient(rgba(34, 37, 42, 0.8), rgba(34, 37, 42, 0.8)),
+                  url('https://images.unsplash.com/photo-1612872087720-bb876e2e67d1?auto=format&fit=crop&w=1600&q=80') center/cover no-repeat;
+      color: var(--white);
+      text-align: center;
+      padding: 6rem 2rem;
+    }
+
+    .hero h1 {
+      font-size: 3rem;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      margin-bottom: 1rem;
+    }
+
+    .hero h1 span {
+      color: var(--primary-pink);
+    }
+
+    .hero p {
+      font-size: 1.2rem;
+      max-width: 600px;
+      margin: 0 auto 2rem;
+      color: var(--light-grey);
+    }
+
+    .btn {
+      display: inline-block;
+      background-color: var(--primary-pink);
+      color: var(--white);
+      padding: 0.8rem 1.8rem;
+      border-radius: 4px;
+      text-decoration: none;
+      font-weight: bold;
+      text-transform: uppercase;
+      border: none;
+      cursor: pointer;
+      transition: background-color 0.2s, transform 0.2s;
+    }
+
+    .btn:hover {
+      background-color: var(--hover-pink);
+      transform: translateY(-2px);
+    }
+
+    /* --- Common Section Styles --- */
+    section {
+      padding: 4.5rem 2rem;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .section-alt {
+      background-color: var(--light-grey);
+      max-width: 100%;
+      padding-left: max(2rem, calc((100% - 1200px) / 2));
+      padding-right: max(2rem, calc((100% - 1200px) / 2));
+    }
+
+    .section-title {
+      text-align: center;
+      margin-bottom: 2.5rem;
+    }
+
+    .section-title h2 {
+      font-size: 2.2rem;
+      text-transform: uppercase;
+      color: var(--dark-grey);
+    }
+
+    .section-title h2 span {
+      color: var(--primary-pink);
+    }
+
+    .section-title p {
+      color: var(--mid-grey);
+      font-size: 1rem;
+      margin-top: 0.5rem;
+    }
+
+    /* --- Gallery / Pictures --- */
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1.5rem;
+    }
+
+    .gallery-item {
+      overflow: hidden;
+      border-radius: 6px;
+      border: 2px solid var(--border-grey);
+    }
+
+    .gallery-item img {
+      width: 100%;
+      height: 240px;
+      object-fit: cover;
+      display: block;
+      transition: transform 0.3s;
+    }
+
+    .gallery-item:hover img {
+      transform: scale(1.05);
+    }
+
+    /* --- Tables (Tournaments & Practices) --- */
+    .table-container {
+      overflow-x: auto;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      background: var(--white);
+      border-radius: 6px;
+      overflow: hidden;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+    }
+
+    th, td {
+      padding: 1rem;
+      text-align: left;
+      border-bottom: 1px solid var(--border-grey);
+    }
+
+    th {
+      background-color: var(--dark-grey);
+      color: var(--white);
+      text-transform: uppercase;
+      font-size: 0.85rem;
+    }
+
+    tr:hover {
+      background-color: var(--light-pink);
+    }
+
+    .badge-result {
+      background: var(--primary-pink);
+      color: var(--white);
+      padding: 0.2rem 0.6rem;
+      border-radius: 4px;
+      font-size: 0.85rem;
+      font-weight: bold;
+    }
+
+    /* --- Cards (Tryouts & Coaches) --- */
+    .card-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 2rem;
+    }
+
+    .card {
+      background: var(--white);
+      border-radius: 6px;
+      border: 1px solid var(--border-grey);
+      padding: 2rem;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.04);
+      text-align: center;
+    }
+
+    .card h3 {
+      color: var(--dark-grey);
+      margin-bottom: 0.5rem;
+    }
+
+    .card .subtitle {
+      color: var(--primary-pink);
+      font-weight: 600;
+      margin-bottom: 1rem;
+      display: block;
+    }
+
+    /* --- Contact Form --- */
+    .contact-form {
+      max-width: 600px;
+      margin: 0 auto;
+      background: var(--white);
+      padding: 2.5rem;
+      border-radius: 6px;
+      border: 1px solid var(--border-grey);
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+    }
+
+    .form-group {
+      margin-bottom: 1.2rem;
+    }
+
+    .form-group label {
+      display: block;
+      margin-bottom: 0.4rem;
+      font-weight: 600;
+      color: var(--mid-grey);
+    }
+
+    .form-group input,
+    .form-group textarea {
+      width: 100%;
+      padding: 0.8rem;
+      border: 1px solid var(--border-grey);
+      border-radius: 4px;
+      outline: none;
+    }
+
+    .form-group input:focus,
+    .form-group textarea:focus {
+      border-color: var(--primary-pink);
+    }
+
+    /* --- Footer --- */
+    footer {
+      background: var(--dark-grey);
+      color: var(--light-grey);
+      text-align: center;
+      padding: 2rem;
+      font-size: 0.9rem;
+    }
+
+    footer span {
+      color: var(--primary-pink);
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Navigation Bar -->
+  <header>
+    <nav>
+      <div class="logo">Overlooked <span>Elite</span></div>
+      <ul class="nav-links">
+        <li><a href="#home">Home</a></li>
+        <li><a href="#pictures">Pictures</a></li>
+        <li><a href="#tournaments">Tournaments</a></li>
+        <li><a href="#tryouts">Tryouts</a></li>
+        <li><a href="#practices">Practices</a></li>
+        <li><a href="#coaches">Coach Bios</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <!-- Hero / Home Section -->
+  <section class="hero" id="home" style="max-width: 100%; padding-left: 0; padding-right: 0;">
+    <h1>Overlooked <span>Elite</span> Volleyball</h1>
+    <p>Developing grit, high-level skill, and unmatched team culture. Turn being overlooked into being undeniable.</p>
+    <a href="#tryouts" class="btn">Join the Elite</a>
+  </section>
+
+  <!-- Pictures / Gallery Section -->
+  <section id="pictures">
+    <div class="section-title">
+      <h2>Team <span>Pictures</span></h2>
+      <p>Highlights and moments from the court.</p>
+    </div>
+    <div class="gallery-grid">
+      <div class="gallery-item">
+        <img src="https://images.unsplash.com/photo-1592656094267-764a45160876?auto=format&fit=crop&w=600&q=80" alt="Volleyball spike">
+      </div>
+      <div class="gallery-item">
+        <img src="https://images.unsplash.com/photo-1547347298-4074fc3086f0?auto=format&fit=crop&w=600&q=80" alt="Team huddle">
+      </div>
+      <div class="gallery-item">
+        <img src="https://images.unsplash.com/photo-1526676037777-05a232554f77?auto=format&fit=crop&w=600&q=80" alt="Volleyball serve">
+      </div>
+    </div>
+  </section>
+
+  <!-- Tournament Schedule & Results Section -->
+  <section id="tournaments" class="section-alt">
+    <div class="section-title">
+      <h2>Tournaments & <span>Results</span></h2>
+      <p>Track our upcoming competitions and season performances.</p>
+    </div>
+    <div class="table-container">
+      <table>
+        <thead>
+          <tr>
+            <th>Date</th>
+            <th>Tournament Name</th>
+            <th>Location</th>
+            <th>Division</th>
+            <th>Result</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Oct 12-13</td>
+            <td>Capital City Classic</td>
+            <td>Regional Sportsplex</td>
+            <td>17 Open</td>
+            <td><span class="badge-result">1st Place (Gold)</span></td>
+          </tr>
+          <tr>
+            <td>Nov 02-03</td>
+            <td>Fall Spike Fest</td>
+            <td>Metro Arena</td>
+            <td>16 Club</td>
+            <td><span class="badge-result">3rd Place (Bronze)</span></td>
+          </tr>
+          <tr>
+            <td>Dec 07-08</td>
+            <td>Winter Invitational</td>
+            <td>State Convention Center</td>
+            <td>18 Open</td>
+            <td><em>Upcoming</em></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- Tryouts Section -->
+  <section id="tryouts">
+    <div class="section-title">
+      <h2>Club <span>Tryouts</span></h2>
+      <p>Secure your spot on an Overlooked Elite roster for the upcoming season.</p>
+    </div>
+    <div class="card-grid">
+      <div class="card">
+        <h3>U14 – U15 Tryouts</h3>
+        <span class="subtitle">Ages 13–15</span>
+        <p><strong>Date:</strong> Saturday, Oct 26</p>
+        <p><strong>Time:</strong> 9:00 AM – 11:30 AM</p>
+        <p><strong>Fee:</strong> $30 (Includes T-Shirt)</p>
+        <br>
+        <a href="#contact" class="btn">Register</a>
+      </div>
+      <div class="card">
+        <h3>U16 – U18 Tryouts</h3>
+        <span class="subtitle">Ages 16–18</span>
+        <p><strong>Date:</strong> Sunday, Oct 27</p>
+        <p><strong>Time:</strong> 1:00 PM – 4:00 PM</p>
+        <p><strong>Fee:</strong> $30 (Includes T-Shirt)</p>
+        <br>
+        <a href="#contact" class="btn">Register</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Practice Schedule Section -->
+  <section id="practices" class="section-alt">
+    <div class="section-title">
+      <h2>Practice <span>Schedule</span></h2>
+      <p>Weekly training times by age division.</p>
+    </div>
+    <div class="table-container">
+      <table>
+        <thead>
+          <tr>
+            <th>Team / Division</th>
+            <th>Days</th>
+            <th>Time</th>
+            <th>Court</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Elite 18s & 17s</td>
+            <td>Monday & Wednesday</td>
+            <td>6:00 PM – 8:00 PM</td>
+            <td>Court 1</td>
+          </tr>
+          <tr>
+            <td>Elite 16s & 15s</td>
+            <td>Tuesday & Thursday</td>
+            <td>6:00 PM – 8:00 PM</td>
+            <td>Court 2</td>
+          </tr>
+          <tr>
+            <td>Strength & Agility (All)</td>
+            <td>Saturday</td>
+            <td>10:00 AM – 11:30 AM</td>
+            <td>Main Facility Gym</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- Coach Bios Section -->
+  <section id="coaches">
+    <div class="section-title">
+      <h2>Coach <span>Bios</span></h2>
+      <p>Meet the dedicated staff behind Overlooked Elite.</p>
+    </div>
+    <div class="card-grid">
+      <div class="card">
+        <h3>Coach Sarah Jenkins</h3>
+        <span class="subtitle">Head Coach / Club Director</span>
+        <p>Former Division I setter with 10+ years of club coaching experience. Passionate about player development and high-IQ court vision.</p>
+      </div>
+      <div class="card">
+        <h3>Coach Marcus Reed</h3>
+        <span class="subtitle">Lead Hitting & Blocking Coach</span>
+        <p>Former collegiate middle blocker focusing on offensive mechanics, explosive footwork, and transition defense.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact Us Section -->
+  <section id="contact" class="section-alt">
+    <div class="section-title">
+      <h2>Contact <span>Us</span></h2>
+      <p>Have questions about tryouts, schedules, or sponsorships? Reach out below.</p>
+    </div>
+    <form class="contact-form" onsubmit="event.preventDefault(); alert('Thank you for contacting Overlooked Elite! We will reply soon.');">
+      <div class="form-group">
+        <label for="name">Full Name</label>
+        <input type="text" id="name" required placeholder="Jane Doe">
+      </div>
+      <div class="form-group">
+        <label for="email">Email Address</label>
+        <input type="email" id="email" required placeholder="jane@example.com">
+      </div>
+      <div class="form-group">
+        <label for="subject">Subject</label>
+        <input type="text" id="subject" placeholder="Tryouts / Schedule Inquiry">
+      </div>
+      <div class="form-group">
+        <label for="message">Message</label>
+        <textarea id="message" rows="5" required placeholder="Write your message here..."></textarea>
+      </div>
+      <button type="submit" class="btn" style="width: 100%;">Send Message</button>
+    </form>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <p>&copy; 2026 <span>Overlooked Elite Volleyball Club</span>. All rights reserved.</p>
+  </footer>
+
+</body>
+</html>
